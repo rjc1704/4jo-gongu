@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4조 - 미션2: 소싱할 제품 3개 선정 및 인플루언서 각 3명씩 선정</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 0;
+        }
+
+        /* Title Section */
+        .title-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .title-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Product Sections */
+        .product-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Product Details Grid */
+        .product-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .detail-card h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-card li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #667eea20, #764ba220);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        /* Influencer Section */
+        .influencer-section {
+            margin-top: 3rem;
+        }
+
+        .influencer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .influencer-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .influencer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .influencer-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .influencer-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .follower-count {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .influencer-content {
+            padding: 2rem;
+        }
+
+        .influencer-content h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .influencer-content p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .instagram-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #E1306C, #F56040);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .instagram-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+        }
+
+        /* Icons */
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title-section h1 {
+                font-size: 2rem;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .product-details {
+                grid-template-columns: 1fr;
+            }
+
+            .influencer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Title Section -->
+        <section class="title-section">
+            <h1>4조 - 미션2</h1>
+            <p>소싱할 제품 3개 선정 및 인플루언서 각 3명씩 선정</p>
+        </section>
+
+        <!-- Product 1: 세렌느 아쿠아 물걸레청소기 -->
+        <section id="product1" class="product-section fade-in">
+            <div class="product-header">
+                <h2 class="product-title">제품 1</h2>
+                <p class="product-subtitle">세렌느 아쿠아 물걸레청소기</p>
+            </div>
+
+            <div class="product-details">
+
+
+
+
+                <div class="detail-card">
+                    <h3><span class="icon">⚡</span> 주요 소구포인트</h3>
+                    <ul>
+                        <li>• 먼지청소 + 물걸레질을 <span class="highlight">한번에 해결</span></li>
+                        <li>• 떨어진 음식물까지 <span class="highlight">한번에 청소</span> (컵라면, 마라탕, 아이스크림까지)</li>
+                        <li>• 자동세척 기능으로 <span class="highlight">30초만에 브러쉬 청소</span></li>
+                        <li>• 초경량 <span class="highlight">500g</span>, 저소음 <span class="highlight">55dB</span></li>
+                        <li>• 쇼파 밑까지 청소 가능한 <span class="highlight">90도 꺾임</span></li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🎨</span> 디자인 & 가성비</h3>
+                    <p><strong>디자인:</strong> 심플하고 예쁜 외관</p>
+                    <p><strong>가성비:</strong> 다이슨 물청소기(50만원대) 대비 <span class="highlight">뛰어난 가성비</span>로 동일한 기능 제공</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🔄</span> 비포 & 애프터</h3>
+                    <p><strong>Before:</strong> 음식물 떨어짐 → 휴지로 건더기 치우기 → 물걸레질 → 걸레 빨기</p>
+                    <p><strong>After:</strong> 아쿠아 청소기로 한번에 싹! → 건더기 간편하게 버리기 → 1분 안에 자동세척</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🛒</span> AGK NORDIC 공식몰</h3>
+                    <p><strong>네이버 브랜드스토어 평점:</strong> <span class="highlight">4점 이상</span></p>
+                    <a href="https://brand.naver.com/agknordic/products/11947939438" class="instagram-link" target="_blank" style="background: linear-gradient(135deg, #03C75A, #009F47);">
+                        🛍️ AGK NORDIC 공식몰 바로가기
+                    </a>
+                </div>
+            </div>
+
+            <div class="influencer-section">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #667eea;">추천 인플루언서 3명</h3>
+                <div class="influencer-grid">
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">살구홈</div>
+                            <div class="follower-count">팔로워 7.4만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• 살림/홈케어 카테고리 전문 인플루언서</p>
+                            <p>• 샤크청소기, 로봇청소기 공구 경험 있으나 <strong>물걸레청소기는 미진행</strong></p>
+                            <p>• 채널 컨셉과 제품이 완벽하게 매치</p>
+                            <a rel="noopener noreferrer" href="https://www.instagram.com/apricot_tree11/reels/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">쓸모집</div>
+                            <div class="follower-count">팔로워 7.4만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• 실용적인 생활용품 소개 전문</p>
+                            <p>• 팔로워들과의 <strong>소통이 매우 활발</strong></p>
+                            <p>• "가볍고 좋은 청소템 3종" 소개 경험 있으나 물걸레청소기는 미소개</p>
+                            <a href="https://www.instagram.com/good_use_zip/reels/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">이유살림</div>
+                            <div class="follower-count">팔로워 13.3만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• 살림 카테고리 대형 인플루언서</p>
+                            <p>• 샤크청소기 공구 댓글에서 <strong>"아직 확신드는 물걸레청소기가 없다"</strong>는 팔로워 니즈 확인</p>
+                            <p>• 제품 소개 및 리뷰 전문성 높음</p>
+                            <a href="https://www.instagram.com/2you_salim" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product 2: 파이나밀 그라인더 -->
+        <section id="product2" class="product-section fade-in">
+            <div class="product-header">
+                <h2 class="product-title">제품 2</h2>
+                <p class="product-subtitle">FinaMill 파이나밀 2세대 USB 전동그라인더</p>
+            </div>
+
+            <div class="product-details">
+                <div class="detail-card">
+                    <h3><span class="icon">🏢</span> 브랜드 정보</h3>
+                    <p><strong>유명브랜드 여부:</strong> <span class="highlight">O</span></p>
+                    <p><strong>입점 현황:</strong> 롯데백화점, 신세계백화점 입점</p>
+                    <p>프리미엄 주방용품 브랜드로 인지도 높음</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">⚡</span> 주요 소구포인트</h3>
+                    <ul>
+                        <li>• <span class="highlight">한손으로 간편하게</span> 후추갈기</li>
+                        <li>• <span class="highlight">미학적으로 아름다운</span> 키친 인테리어</li>
+                        <li>• <span class="highlight">향신료별 전용팟</span> 시스템</li>
+                        <li>• 강하지만 <span class="highlight">조용한 모터</span> 소리</li>
+                        <li>• USB 충전식으로 <span class="highlight">선 없이 자유롭게</span> 사용</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🎨</span> 디자인</h3>
+                    <p><strong>외관:</strong> 세련되고 한손 사용에 최적화된 디자인</p>
+                    <p><strong>편의성:</strong> 버튼 하나로 간편 조작</p>
+                    <p><strong>인테리어:</strong> 주방을 더욱 고급스럽게 만드는 디자인</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🔄</span> 비포 & 애프터</h3>
+                    <p><strong>Before:</strong> 양념 섞다가 → 장갑 벗고 → 후추나 소금 넣기 → 깨 직접 손으로 빻기</p>
+                    <p><strong>After:</strong> 한손으로 종류별 팟 간단 교체 → 버튼만 딸깍!</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🛒</span> FinaMill 공식몰</h3>
+                    <p><strong>백화점 입점:</strong> 롯데백화점, 신세계백화점</p>
+                    <a href="https://brand.naver.com/finamill/products/11148885976" class="instagram-link" target="_blank" style="background: linear-gradient(135deg, #03C75A, #009F47);">
+                        🛍️ FinaMill 공식몰 바로가기
+                    </a>
+                </div>
+            </div>
+
+            <div class="influencer-section">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #667eea;">추천 인플루언서 3명</h3>
+                <div class="influencer-grid">
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">봄집사</div>
+                            <div class="follower-count">팔로워 25.7만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• 라이프스타일/살림 대형 인플루언서</p>
+                            <p>• <strong>예쁘고 기능 좋은</strong> 주방용품에 관심 많음</p>
+                            <p>• 주방용품 공구 경험 풍부하나 파이나밀 미진행</p>
+                            <p>• 제품의 미학적 가치를 잘 어필할 수 있는 인플루언서</p>
+                            <a href="https://www.instagram.com/bomzipsa/reels/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">쓸모집</div>
+                            <div class="follower-count">팔로워 7.4만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• <strong>"한손으로 바로 사용 가능"</strong> 소구점으로 제작한 릴스 보유</p>
+                            <p>• 실용성에 포커스한 콘텐츠 스타일</p>
+                            <p>• 아직 파이나밀 소개 경험 없어 신선함 제공 가능</p>
+                            <a href="https://www.instagram.com/good_use_zip/reels/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">마이어홈</div>
+                            <div class="follower-count">팔로워 13.3만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• 홈케어/주방용품 전문 인플루언서</p>
+                            <p>• <strong>레꼴드 그라인더 믹서기</strong> 공구 성공 이력</p>
+                            <p>• 그라인더 카테고리 경험 풍부</p>
+                            <p>• 아직 파이나밀 진행 경험 없어 높은 관심도 예상</p>
+                            <a href="https://www.instagram.com/meyer_home" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product 3: 브랜든 압축파우치 -->
+        <section id="product3" class="product-section fade-in">
+            <div class="product-header">
+                <h2 class="product-title">제품 3</h2>
+                <p class="product-subtitle">브랜든 이불/여행 압축 파우치</p>
+            </div>
+
+            <div class="product-details">
+                <div class="detail-card">
+                    <h3><span class="icon">🏢</span> 브랜드 정보</h3>
+                    <p><strong>유명브랜드 여부:</strong> <span class="highlight">O</span></p>
+                    <p><strong>입점 현황:</strong> 롯데면세점 입점</p>
+                    <p><strong>온라인 인지도:</strong> 블로그 포스트 다수 존재, 검증된 브랜드</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">⚡</span> 주요 소구포인트</h3>
+                    <ul>
+                        <li>• 효율적인 수납을 위한 <span class="highlight">메쉬 포켓</span></li>
+                        <li>• 압축 퀄리티를 높이는 <span class="highlight">고급 YKK지퍼</span></li>
+                        <li>• <span class="highlight">210D 나일론 립스탑</span> 원단으로 평생 사용</li>
+                        <li>• 부피가 큰 짐을 위한 <span class="highlight">최적의 선택</span></li>
+                        <li>• 통기성 향상을 위한 <span class="highlight">더 커진 에어홀</span></li>
+                        <li>• 장기간 보관 시 유용한 <span class="highlight">네임 포켓</span></li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🎨</span> 디자인</h3>
+                    <p><strong>색상:</strong> 다양한 컬러 옵션 제공</p>
+                    <p><strong>이동편의성:</strong> 튼튼한 손잡이로 이동 편의성 고려</p>
+                    <p><strong>실용성:</strong> 수납과 압축을 동시에 해결하는 디자인</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🔄</span> 비포 & 애프터</h3>
+                    <p><strong>Before:</strong> 장농 전체를 차지하는 이불들 / 진공압축비닐 + 진공흡입기 번거롭게 사용</p>
+                    <p><strong>After:</strong> 간편하게 지퍼만으로 이불 압축! → 장농 공간 절반이 비어짐</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3><span class="icon">🛒</span> BRANDEN 공식몰</h3>
+                    <p><strong>면세점 입점:</strong> 롯데면세점</p>
+                    <p><strong>온라인:</strong> 블로그 포스트 다수, 검증된 브랜드</p>
+                    <a href="https://branden.shop/product/detail.html?product_no=147&cate_no=109&display_group=1" class="instagram-link" target="_blank" style="background: linear-gradient(135deg, #03C75A, #009F47);">
+                        🛍️ BRANDEN 공식몰 바로가기
+                    </a>
+                </div>
+            </div>
+
+            <div class="influencer-section">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #667eea;">추천 인플루언서 3명</h3>
+                <div class="influencer-grid">
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">프롬졸리</div>
+                            <div class="follower-count">팔로워 25.7만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• <strong>깔끔한 신혼집 컨셉</strong>과 브랜든의 정리된 모습이 완벽 매치</p>
+                            <p>• 평소 공구 단가 3~10만원선으로 적정 수준</p>
+                            <p>• 주방용품과 집인테리어 카테고리 전문</p>
+                            <p>• 정리수납에 대한 니즈가 높은 신혼부부 타겟</p>
+                            <a rel="noopener noreferrer" href="https://www.instagram.com/fromjolie_home/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">호하우스</div>
+                            <div class="follower-count">팔로워 6만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• <strong>집꾸미기 정리</strong>를 피드에서 지속적으로 보여줌</p>
+                            <p>• 수납과 정리가 호하우스 컨셉과 딱 부합</p>
+                            <p>• <strong>유용한 수납함 위주</strong> 공구 진행 이력</p>
+                            <p>• 평소 진행 단가는 다소 높은 편으로 프리미엄 제품 선호</p>
+                            <a href="https://www.instagram.com/_____ho.house/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="influencer-name">코루비</div>
+                            <div class="follower-count">팔로워 16.3만명</div>
+                        </div>
+                        <div class="influencer-content">
+                            <h4>선정 이유</h4>
+                            <p>• <strong>비포&애프터 표현</strong>을 매우 잘하는 인플루언서</p>
+                            <p>• 소구점 포인트를 정확히 잡아내는 능력</p>
+                            <p>• <strong>릴스 200만 조회수</strong> 달성할 정도로 높은 콘텐츠 파워</p>
+                            <p>• 브랜든의 부피 절약과 튼튼함을 잘 부각시킬 것으로 기대</p>
+                            <a href="https://www.instagram.com/corub_i/reels/" class="instagram-link" target="_blank">
+                                📱 인스타그램 보기
+</body>
+</html>
